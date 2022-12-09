@@ -114,4 +114,59 @@ class GroupsEpics extends AbstractApi
     {
         return $this->get('groups/'.self::encodePath($group_id).'/epics/'.self::encodePath($epic_iid).'/issues');
     }
+
+    /**
+     * @param int|string $group_id
+     * @param int        $epic_iid
+     * @param int        $note_id
+     *
+     * @return mixed
+     */
+    public function showNote($group_id, int $epic_iid, int $note_id)
+    {
+        return $this->get('groups/'.self::encodePath($group_id).'/epics/'.self::encodePath($epic_iid).'/notes/'.self::encodePath($note_id));
+    }
+
+    /**
+     * @param int|string $group_id
+     * @param int        $epic_iid
+     * @param string     $body
+     * @param array      $params
+     *
+     * @return mixed
+     */
+    public function addNote($group_id, int $epic_iid, string $body, array $params = [])
+    {
+        $params['body'] = $body;
+
+        return $this->post('groups/'.self::encodePath($group_id).'/epics/'.self::encodePath($epic_iid).'/notes', $params);
+    }
+
+    /**
+     * @param int|string $group_id
+     * @param int        $epic_iid
+     * @param int        $note_id
+     * @param string     $body
+     * @param array      $params
+     *
+     * @return mixed
+     */
+    public function updateNote($group_id, int $epic_iid, int $note_id, string $body, array $params = [])
+    {
+        $params['body'] = $body;
+
+        return $this->put('groups/'.self::encodePath($group_id).'/epics/'.self::encodePath($epic_iid).'/notes/'.self::encodePath($note_id), $params);
+    }
+
+    /**
+     * @param int|string $group_id
+     * @param int        $epic_iid
+     * @param int        $note_id
+     *
+     * @return mixed
+     */
+    public function removeNote($group_id, int $epic_iid, int $note_id)
+    {
+        return $this->delete('groups/'.self::encodePath($group_id).'epics/'.self::encodePath($epic_iid).'/notes/'.self::encodePath($note_id));
+    }
 }
