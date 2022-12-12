@@ -169,4 +169,16 @@ class GroupsEpics extends AbstractApi
     {
         return $this->delete('groups/'.self::encodePath($group_id).'epics/'.self::encodePath($epic_iid).'/notes/'.self::encodePath($note_id));
     }
+
+    /**
+     * @param int|string $group_id
+     * @param int        $epic_iid
+     * @param int        $issue_id     
+     *
+     * @return mixed
+     */
+    public function assignIssue($group_id, int $epic_iid, int $issue_id)
+    {
+        return $this->post('groups/'.self::encodePath($group_id).'/epics/'.self::encodePath($epic_iid).'/issues/'.self::encodePath($issue_id));
+    }
 }
